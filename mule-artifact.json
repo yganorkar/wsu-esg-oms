@@ -1,6 +1,6 @@
 {
   "configs": [
-    "order-management-system.xml"
+    "customer-api.xml"
   ],
   "secureProperties": [],
   "redeploymentEnabled": true,
@@ -16,6 +16,8 @@
         "api\\examples\\503Example.raml",
         "api\\examples\\CustomerExample.raml",
         "api\\examples\\customers.raml",
+        "api\\raml_flows\\customer-api.raml",
+        "api\\customer-api.raml",
         "api\\order-management-system.raml"
       ],
       "exportedPackages": []
