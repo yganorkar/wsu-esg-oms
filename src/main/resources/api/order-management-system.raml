@@ -1,0 +1,103 @@
+#%RAML 1.0
+title: Order Management System
+version: 1.0
+baseUri: http://api.oms.com
+mediaType: application/json
+
+/customer:
+  /{ID}:
+    get:
+      headers: 
+       apikey: string
+      description: Fetches particular customer if available.
+      displayName: Get particular Customers
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/CustomerExample.raml
+        400:
+          body: 
+            application/json:
+              example: !include examples/400Example.raml
+        404:
+          body: 
+            application/json:
+              example: !include examples/404Example.raml
+        503:
+          body: 
+            application/json:
+              example: !include examples/503Example.raml              
+  get:
+   description: Fetches list of all the customers available.
+   headers: 
+    apikey: string
+   displayName: Get All Customers
+   responses: 
+    200:
+      body: 
+        application/json:
+          example: !include examples/customers.raml
+    400:
+      body: 
+        application/json:
+          example: !include examples/400Example.raml
+    404:
+      body: 
+        application/json:
+          example: !include examples/404Example.raml
+    503:
+      body: 
+        application/json:
+          example: !include examples/503Example.raml
+  post:
+   description: Creates a new Customer resource.
+   headers: 
+    apikey: string
+   displayName: Create new Customer
+   body: 
+     application/json:
+        schema: | # can also be used with 'type'
+          {
+            "title": "Customer Schema",
+            "type": "object",
+            "properties": {
+              "FirstName": {
+                "type": "string"
+              },
+              "City":{
+                "type": "string"
+              },
+              "Country":{
+                "type":"string"
+              },
+              "Phone":{
+                "type": "number"
+              },
+              "LastName": {
+                "type": "string"
+              }
+            },
+            "required": ["FirstName", "LastName", "City", "Country", "Phone"]
+          }      
+        example: !include examples/CustomerExample.raml
+   responses: 
+    201:
+     body: 
+       application/json:
+         example: |
+          {
+            "response": "Resource created"
+          }
+    400:
+      body: 
+        application/json:
+          example: !include examples/400Example.raml
+    404:
+      body: 
+        application/json:
+          example: !include examples/404Example.raml
+    503:
+      body: 
+        application/json:
+          example: !include examples/503Example.raml

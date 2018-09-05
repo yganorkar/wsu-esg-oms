@@ -1,0 +1,28 @@
+{
+  "configs": [
+    "order-management-system.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "wsu-esg-oms",
+  "minMuleVersion": "4.1.2",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "api\\examples\\400Example.raml",
+        "api\\examples\\404Example.raml",
+        "api\\examples\\503Example.raml",
+        "api\\examples\\CustomerExample.raml",
+        "api\\examples\\customers.raml",
+        "api\\order-management-system.raml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}
