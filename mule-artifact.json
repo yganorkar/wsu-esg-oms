@@ -10,7 +10,6 @@
   "classLoaderModelLoaderDescriptor": {
     "id": "mule",
     "attributes": {
-      "exportedPackages": [],
       "exportedResources": [
         "api\\examples\\400Example.raml",
         "api\\examples\\404Example.raml",
@@ -18,7 +17,8 @@
         "api\\examples\\CustomerExample.raml",
         "api\\examples\\customers.raml",
         "api\\order-management-system.raml"
-      ]
+      ],
+      "exportedPackages": []
     }
   },
   "bundleDescriptorLoader": {
