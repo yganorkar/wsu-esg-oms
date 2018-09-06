@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd ">
-    <http:listener-config name="product-api-httpListenerConfig">
-        <http:listener-connection host="0.0.0.0" port="8081" />
+    <http:listener-config name="supplier-api-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="8084" />
     </http:listener-config>
-    <apikit:config name="product-api-config" raml="product-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
-    <flow name="product-api-main">
-        <http:listener config-ref="product-api-httpListenerConfig" path="/api/*">
+    <apikit:config name="supplier-api-config" raml="supplier-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <flow name="supplier-api-main">
+        <http:listener config-ref="supplier-api-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers>#[vars.outboundHeaders default {}]</http:headers>
             </http:response>
@@ -14,7 +14,7 @@
                 <http:headers>#[vars.outboundHeaders default {}]</http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:router config-ref="product-api-config" />
+        <apikit:router config-ref="supplier-api-config" />
         <error-handler>
             <on-error-propagate type="APIKIT:BAD_REQUEST">
                 <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
@@ -96,8 +96,8 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-    <flow name="product-api-console">
-        <http:listener config-ref="product-api-httpListenerConfig" path="/console/*">
+    <flow name="supplier-api-console">
+        <http:listener config-ref="supplier-api-httpListenerConfig" path="/console/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers>#[vars.outboundHeaders default {}]</http:headers>
             </http:response>
@@ -106,7 +106,7 @@ output application/json
                 <http:headers>#[vars.outboundHeaders default {}]</http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:console config-ref="product-api-config" />
+        <apikit:console config-ref="supplier-api-config" />
         <error-handler>
             <on-error-propagate type="APIKIT:NOT_FOUND">
                 <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
@@ -123,7 +123,7 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-    <flow name="delete:\product\(ID):product-api-config">
+    <flow name="delete:\supplier\(ID):supplier-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
             <ee:variables>
                 <ee:set-variable variableName="ID">attributes.uriParams.ID</ee:set-variable>
@@ -138,7 +138,7 @@ output application/json
             </ee:message>
         </ee:transform>
     </flow>
-    <flow name="patch:\product\(ID):application\json:product-api-config">
+    <flow name="patch:\supplier\(ID):application\json:supplier-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
             <ee:variables>
                 <ee:set-variable variableName="ID">attributes.uriParams.ID</ee:set-variable>
@@ -153,7 +153,7 @@ output application/json
             </ee:message>
         </ee:transform>
     </flow>
-    <flow name="get:\product:product-api-config">
+    <flow name="get:\supplier:supplier-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
             <ee:message>
                 <ee:set-payload><![CDATA[%dw 2.0
@@ -161,28 +161,37 @@ output application/json
 ---
 [
   {
-    id: 12783687126378,
-    productName: "Apple MacBook Pro 13.3 inch",
-    unitPrice: 1399.99,
-    package: "3 lbs"
+    id: 18273927198,
+    CompanyName: "Apple",
+    ContactName: "XYZ",
+    ContactTitle: "Mr.",
+    City: "San Francisco",
+    Country: "USA",
+    Phone: 1230987612
   }, 
   {
-    id: 12783687126379,
-    productName: "Apple MacBook Air 13.3 inch",
-    unitPrice: 799.99,
-    package: "3.6 lbs"
+    id: 18273927200,
+    CompanyName: "Samsung",
+    ContactName: "ABC",
+    ContactTitle: "Mr.",
+    City: "San Jose",
+    Country: "USA",
+    Phone: 1230987617
   }, 
   {
-    id: 12783687126380,
-    productName: "Apple MacBook Pro 15.6 inch",
-    unitPrice: 1599.99,
-    package: "3.5 lbs"
+    id: 18273927765,
+    CompanyName: "Honor",
+    ContactName: "JFK",
+    ContactTitle: "Mrs.",
+    City: "New York City",
+    Country: "USA",
+    Phone: 1230987324
   }
 ]]]></ee:set-payload>
             </ee:message>
         </ee:transform>
     </flow>
-    <flow name="get:\product\(ID):product-api-config">
+    <flow name="get:\supplier\(ID):supplier-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
             <ee:variables>
                 <ee:set-variable variableName="ID">attributes.uriParams.ID</ee:set-variable>
@@ -194,15 +203,18 @@ output application/json
 output application/json
 ---
 {
-  id: 12783687126378,
-  productName: "Apple MacBook Pro 13.3 inch",
-  unitPrice: 1399.99,
-  package: "3 lbs"
+  id: 18273927198,
+  CompanyName: "Apple",
+  ContactName: "XYZ",
+  ContactTitle: "Mr.",
+  City: "San Francisco",
+  Country: "USA",
+  Phone: 1230987612
 }]]></ee:set-payload>
             </ee:message>
         </ee:transform>
     </flow>
-    <flow name="post:\product:application\json:product-api-config">
+    <flow name="post:\supplier:application\json:supplier-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
             <ee:message>
                 <ee:set-payload><![CDATA[%dw 2.0
