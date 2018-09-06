@@ -1,5 +1,7 @@
 {
   "configs": [
+    "product-api.xml",
+    "salesman-api.xml",
     "customer-api.xml"
   ],
   "secureProperties": [],
@@ -10,17 +12,23 @@
   "classLoaderModelLoaderDescriptor": {
     "id": "mule",
     "attributes": {
+      "exportedPackages": [],
       "exportedResources": [
         "api\\examples\\400Example.raml",
         "api\\examples\\404Example.raml",
         "api\\examples\\503Example.raml",
         "api\\examples\\CustomerExample.raml",
+        "api\\examples\\Product.raml",
+        "api\\examples\\Products.raml",
+        "api\\examples\\Salesman.raml",
+        "api\\examples\\Salesmen.raml",
         "api\\examples\\customers.raml",
         "api\\raml_flows\\customer-api.raml",
+        "api\\raml_flows\\product-api.raml",
+        "api\\raml_flows\\salesman-api.raml",
         "api\\customer-api.raml",
         "api\\order-management-system.raml"
-      ],
-      "exportedPackages": []
+      ]
     }
   },
   "bundleDescriptorLoader": {

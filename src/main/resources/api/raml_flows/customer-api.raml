@@ -61,6 +61,9 @@ mediaType: application/json
        example: !include ../examples/CustomerExample.raml
      responses: 
       204:
+         body: 
+          application/json:
+            example: {}      
       400:
        body: 
         application/json:
@@ -72,7 +75,7 @@ mediaType: application/json
       503:
        body: 
         application/json:
-          example: !include ../examples/503Example.raml              
+          example: !include ../examples/503Example.raml            
   get:
    description: Fetches list of all the customers available.
    headers: 

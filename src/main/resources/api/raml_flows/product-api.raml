@@ -1,0 +1,157 @@
+#%RAML 1.0
+title: Order Management System
+version: 1.0
+baseUri: http://api.oms.com
+mediaType: application/json
+
+/product:
+  get:
+      headers: 
+       apikey: string
+      description: Fetches all products.
+      displayName: Get all products
+      responses:
+        200:
+          body: 
+            application/json:
+              example: !include ../examples/Products.raml
+        400:
+          body: 
+            application/json:
+              example: !include ../examples/400Example.raml
+        404:
+          body: 
+            application/json:
+              example: !include ../examples/404Example.raml
+        503:
+          body: 
+            application/json:
+              example: !include ../examples/503Example.raml
+  post:
+   description: Creates a new Product resource.
+   headers: 
+    apikey: string
+   displayName: Add a new product
+   body: 
+    application/json:
+       schema: |
+        {
+          "title": "Product Schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "productName": {
+              "type": "string"
+            },
+            "unitPrice": {
+              "type":"number"
+            },
+            "package": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "productName", "unitPrice", "package"]
+        }
+       example: !include ../examples/Product.raml
+   responses:
+    201:
+     body: 
+       application/json:
+         example: |
+          {
+            "response": "Resource created"
+          }
+    400:
+      body: 
+        application/json:
+          example: !include ../examples/400Example.raml
+    404:
+      body: 
+        application/json:
+          example: !include ../examples/404Example.raml
+    503:
+      body: 
+        application/json:
+          example: !include ../examples/503Example.raml
+  /{ID}:
+   get:
+      headers: 
+       apikey: string
+      description: Fetch details of product.
+      displayName: Get particular product     
+      responses:
+        200:
+          body: 
+            application/json:
+              example: !include ../examples/Product.raml
+        400:
+          body: 
+            application/json:
+              example: !include ../examples/400Example.raml
+        404:
+          body: 
+            application/json:
+              example: !include ../examples/404Example.raml
+        503:
+          body: 
+            application/json:
+              example: !include ../examples/503Example.raml
+   patch:
+      headers: 
+       apikey: string
+      description: Updates price of the product.
+      displayName: Update price
+      body:
+       application/json:
+        schema: |
+         {
+          "title": "Price update schema",
+          "type": "object",
+          "properties": {
+            "unitPrice": {
+              "type":"number"
+            }
+          },
+          "required": ["unitPrice"]
+         }
+      responses:
+        204:
+         body: 
+          application/json:
+            example: {}
+        400:
+          body: 
+            application/json:
+              example: !include ../examples/400Example.raml
+        404:
+          body: 
+            application/json:
+              example: !include ../examples/404Example.raml
+        503:
+          body: 
+            application/json:
+              example: !include ../examples/503Example.raml
+   delete:
+      headers: 
+       apikey: string
+      description: Delete product.
+      displayName: Delete particular product
+      responses: 
+       204:
+        body: 
+          application/json:
+            example: {}
+       400:
+        body: 
+          application/json:
+            example: !include ../examples/400Example.raml
+       404:
+        body: 
+          application/json:
+            example: !include ../examples/404Example.raml
+       503:
+        body: 
+          application/json:
+            example: !include ../examples/503Example.raml
