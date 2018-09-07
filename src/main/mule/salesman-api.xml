@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd ">
     <http:listener-config name="salesman-api-httpListenerConfig">
-        <http:listener-connection host="0.0.0.0" port="8083" />
+        <http:listener-connection host="0.0.0.0" port="8081" />
     </http:listener-config>
     <apikit:config name="salesman-api-config" raml="salesman-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="salesman-api-main">
@@ -154,7 +154,39 @@ output application/json
         </ee:transform>
     </flow>
     <flow name="get:\salesman:salesman-api-config">
-        <logger level="INFO" message="get:\salesman:salesman-api-config" />
+        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    salesman_id: 12839821,
+    salesman_name: "Donald Doe",
+    city: "Washington DC",
+    commission: 10.8
+  }, 
+  {
+    salesman_id: 12839123,
+    salesman_name: "John Trump",
+    city: "Washington DC",
+    commission: 8.2
+  }, 
+  {
+    salesman_id: 12839812,
+    salesman_name: "Mike Dove",
+    city: "Chicago",
+    commission: 15
+  }, 
+  {
+    salesman_id: 12839102,
+    salesman_name: "Cathy Gates",
+    city: "Seattle",
+    commission: 34
+  }
+]]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
     </flow>
     <flow name="get:\salesman\(ID):salesman-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">

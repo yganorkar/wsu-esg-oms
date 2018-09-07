@@ -15,19 +15,19 @@ mediaType: application/json
         200:
           body: 
             application/json:
-              example: !include ../examples/CustomerExample.raml
+              example: !include examples/CustomerExample.raml
         400:
           body: 
             application/json:
-              example: !include ../examples/400Example.raml
+              example: !include examples/400Example.raml
         404:
           body: 
             application/json:
-              example: !include ../examples/404Example.raml
+              example: !include examples/404Example.raml
         503:
           body: 
             application/json:
-              example: !include ../examples/503Example.raml
+              example: !include examples/503Example.raml
     patch:
      description: Creates a new Customer resource.
      headers: 
@@ -58,7 +58,7 @@ mediaType: application/json
             },
             "required": ["FirstName", "LastName", "City"]
           }
-       example: !include ../examples/CustomerExample.raml
+       example: !include examples/CustomerExample.raml
      responses: 
       204:
          body: 
@@ -67,15 +67,15 @@ mediaType: application/json
       400:
        body: 
         application/json:
-          example: !include ../examples/400Example.raml
+          example: !include examples/400Example.raml
       404:
        body: 
         application/json:
-          example: !include ../examples/404Example.raml
+          example: !include examples/404Example.raml
       503:
        body: 
         application/json:
-          example: !include ../examples/503Example.raml            
+          example: !include examples/503Example.raml            
   get:
    description: Fetches list of all the customers available.
    headers: 
@@ -85,19 +85,19 @@ mediaType: application/json
     200:
       body: 
         application/json:
-          example: !include ../examples/customers.raml
+          example: !include examples/customers.raml
     400:
       body: 
         application/json:
-          example: !include ../examples/400Example.raml
+          example: !include examples/400Example.raml
     404:
       body: 
         application/json:
-          example: !include ../examples/404Example.raml
+          example: !include examples/404Example.raml
     503:
       body: 
         application/json:
-          example: !include ../examples/503Example.raml
+          example: !include examples/503Example.raml
   post:
    description: Creates a new Customer resource.
    headers: 
@@ -128,7 +128,7 @@ mediaType: application/json
             },
             "required": ["FirstName", "LastName", "City", "Country", "Phone"]
           }      
-        example: !include ../examples/CustomerExample.raml
+        example: !include examples/CustomerExample.raml
    responses: 
     201:
      body: 
@@ -140,12 +140,12 @@ mediaType: application/json
     400:
       body: 
         application/json:
-          example: !include ../examples/400Example.raml
+          example: !include examples/400Example.raml
     404:
       body: 
         application/json:
-          example: !include ../examples/404Example.raml
+          example: !include examples/404Example.raml
     503:
       body: 
         application/json:
-          example: !include ../examples/503Example.raml
+          example: !include examples/503Example.raml

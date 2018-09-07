@@ -14,19 +14,19 @@ mediaType: application/json
         200:
           body: 
             application/json:
-              
+              example: !include examples/Salesmen.raml
         400:
           body: 
             application/json:
-              example: !include ../examples/400Example.raml
+              example: !include examples/400Example.raml
         404:
           body: 
             application/json:
-              example: !include ../examples/404Example.raml
+              example: !include examples/404Example.raml
         503:
           body: 
             application/json:
-              example: !include ../examples/503Example.raml
+              example: !include examples/503Example.raml
  post:
      headers:
        apikey: string
@@ -54,7 +54,7 @@ mediaType: application/json
           },
           "required": ["salesman_id", "salesman_name", "city", "commission"]
          }
-        example: !include ../examples/Salesman.raml
+        example: !include examples/Salesman.raml
      responses: 
           201:
             body: 
@@ -66,15 +66,15 @@ mediaType: application/json
           400:
             body: 
               application/json:
-                example: !include ../examples/400Example.raml
+                example: !include examples/400Example.raml
           404:
             body: 
               application/json:
-                example: !include ../examples/404Example.raml
+                example: !include examples/404Example.raml
           503:
             body: 
               application/json:
-                example: !include ../examples/503Example.raml
+                example: !include examples/503Example.raml
  /{ID}:
     get:
           headers: 
@@ -85,19 +85,19 @@ mediaType: application/json
             200:
               body: 
                 application/json:
-                  example: !include ../examples/Salesmen.raml
+                  example: !include examples/Salesmen.raml
             400:
               body: 
                 application/json:
-                  example: !include ../examples/400Example.raml
+                  example: !include examples/400Example.raml
             404:
               body: 
                 application/json:
-                  example: !include ../examples/404Example.raml
+                  example: !include examples/404Example.raml
             503:
               body: 
                 application/json:
-                  example: !include ../examples/503Example.raml
+                  example: !include examples/503Example.raml
     patch:
           headers: 
            apikey: string
@@ -124,15 +124,15 @@ mediaType: application/json
             400:
               body: 
                 application/json:
-                  example: !include ../examples/400Example.raml
+                  example: !include examples/400Example.raml
             404:
               body: 
                 application/json:
-                  example: !include ../examples/404Example.raml
+                  example: !include examples/404Example.raml
             503:
               body: 
                 application/json:
-                  example: !include ../examples/503Example.raml
+                  example: !include examples/503Example.raml
     delete:
           headers: 
            apikey: string
@@ -146,12 +146,12 @@ mediaType: application/json
             400:
               body: 
                 application/json:
-                  example: !include ../examples/400Example.raml
+                  example: !include examples/400Example.raml
             404:
               body: 
                 application/json:
-                  example: !include ../examples/404Example.raml
+                  example: !include examples/404Example.raml
             503:
               body: 
                 application/json:
-                  example: !include ../examples/503Example.raml          
+                  example: !include examples/503Example.raml          

@@ -4,17 +4,19 @@ version: 1.0
 baseUri: http://api.oms.com
 mediaType: application/json
 
-/supplier:
-  get:
+/order:
+ get:
       headers: 
        apikey: string
-      description: Fetches all suppliers available.
-      displayName: Get all suppliers
+      queryParameters: 
+        customerId: number
+      description: Fetch all orders if available.
+      displayName: Get all orders
       responses:
         200:
           body: 
             application/json:
-              example: !include examples/Suppliers.raml
+              example: !include examples/Orders.raml
         400:
           body: 
             application/json:
@@ -27,40 +29,35 @@ mediaType: application/json
           body: 
             application/json:
               example: !include examples/503Example.raml
-  post:
+ post:
       headers: 
        apikey: string
-      description: Adds new supplier.
-      displayName: Add new supplier
+      description: Add a new order to database.
+      displayName: Create a new order
       body:
-       application/json:
+        application/json:
          schema: |
           {
-            "title": "Supplier Schema",
+            "title": "Order Schema",
             "type": "object",
             "properties": {
-              "CompanyName": {
-                "type": "string"
+              "OrderDate": {
+                "type": "number"
               },
-              "ContactName": {
-                "type": "string"
+              "OrderNumber": {
+                "type": "number"
               },
-              "ContactTitle": {
-                "type":"string"
+              "CustomerId": {
+                "type":"number"
               },
-              "City": {
-                "type":"string"
-              },              
-              "Country": {
-                "type": "string"
-              },
-              "Phone": {
+              "TotalAmount": {
                 "type": "number"
               }
             },
-            "required": ["CompanyName", "ContactName", "ContactTitle", "City", "Country", "Phone"]            
+            "required": ["OrderDate", "OrderNumber", "CustomerId", "TotalAmount"]
           }
-      responses:
+         example: !include examples/Order.raml
+      responses: 
           201:
             body: 
               application/json:
@@ -80,17 +77,19 @@ mediaType: application/json
             body: 
               application/json:
                 example: !include examples/503Example.raml
-  /{ID}:
-    get:
+ /{ID}:
+  get:
       headers: 
        apikey: string
-      description: Fetch requested supplier.
-      displayName: Get requested supplier
+      queryParameters: 
+        customerId: number
+      description: Fetch particular order details if available.
+      displayName: Get particular order details
       responses:
         200:
           body: 
             application/json:
-              example: !include examples/Supplier.raml
+              example: !include examples/Order.raml
         400:
           body: 
             application/json:
@@ -102,48 +101,13 @@ mediaType: application/json
         503:
           body: 
             application/json:
-              example: !include examples/503Example.raml
-    patch:
-          headers: 
-           apikey: string
-          description: Update supplier contact name.
-          displayName: Update supplier contact name.
-          body:
-           application/json:
-             schema: |
-              {
-                "title": "Supplier Schema",
-                "type": "object",
-                "properties": {
-                  "ContactName": {
-                    "type": "string"
-                  }
-                },
-                "required": ["ContactName"]
-              }
-          responses:
-            204:
-              body: 
-                application/json:
-                  example: {}
-            400:
-              body: 
-                application/json:
-                  example: !include examples/400Example.raml
-            404:
-              body: 
-                application/json:
-                  example: !include examples/404Example.raml
-            503:
-              body: 
-                application/json:
-                  example: !include examples/503Example.raml
-    delete:
-          headers: 
-           apikey: string
-          description: Remove supplier record.
-          displayName: Delete supplier.
-          responses: 
+              example: !include examples/503Example.raml    
+  delete:
+      headers: 
+       apikey: string
+      description: Remove salesman entity.
+      displayName: Delete salesman.
+      responses: 
             204:
               body: 
                 application/json:

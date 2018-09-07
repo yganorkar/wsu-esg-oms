@@ -1,7 +1,9 @@
 {
   "configs": [
+    "order-api.xml",
     "product-api.xml",
     "salesman-api.xml",
+    "supplier-api.xml",
     "customer-api.xml"
   ],
   "secureProperties": [],
@@ -14,19 +16,27 @@
     "attributes": {
       "exportedPackages": [],
       "exportedResources": [
+        "api\\customer-api.raml",
         "api\\examples\\400Example.raml",
         "api\\examples\\404Example.raml",
         "api\\examples\\503Example.raml",
         "api\\examples\\CustomerExample.raml",
+        "api\\examples\\Order.raml",
+        "api\\examples\\Orders.raml",
         "api\\examples\\Product.raml",
         "api\\examples\\Products.raml",
         "api\\examples\\Salesman.raml",
         "api\\examples\\Salesmen.raml",
+        "api\\examples\\Supplier.raml",
+        "api\\examples\\Suppliers.raml",
         "api\\examples\\customers.raml",
+        "api\\order-api.raml",
+        "api\\product-api.raml",
+        "api\\salesman-api.raml",
+        "api\\supplier-api.raml",
         "api\\raml_flows\\customer-api.raml",
         "api\\raml_flows\\product-api.raml",
         "api\\raml_flows\\salesman-api.raml",
-        "api\\customer-api.raml",
         "api\\order-management-system.raml"
       ]
     }
